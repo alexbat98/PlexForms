@@ -32,6 +32,19 @@ void TPlex::addLine(TLine *l)
 	}
 	else
 	{
+
+		TPoint *tmpP = findPoint(((TPoint*)l->getLeft())->getX(), ((TPoint*)l->getLeft())->getY());
+		if (tmpP != nullptr)
+		{
+			tmpP->updateMultiplicity(1);
+		}
+
+		tmpP = findPoint(((TPoint*)l->getRight())->getX(), ((TPoint*)l->getRight())->getY());
+		if (tmpP != nullptr)
+		{
+			tmpP->updateMultiplicity(1);
+		}
+
 		TLine *left = findLineWithPoint(l->getLeft()->getName());
 		TLine *right = findLineWithPoint(l->getRight()->getName());
 

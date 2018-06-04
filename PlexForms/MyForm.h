@@ -191,12 +191,6 @@ private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, Syste
 			MarshalString(saveFileDialog1->FileName, fileName);
 
 			drawing->save(fileName);
-			//if ((myStream = saveFileDialog1->OpenFile()) != nullptr)
-			//{
-			//	
-			//	// Code to write the stream goes here.
-			//	myStream->Close();
-			//}
 		}
 	}
 }
