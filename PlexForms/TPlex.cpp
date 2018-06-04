@@ -326,15 +326,18 @@ TPoint* TPlex::findPoint(std::string name)
 	TPoint *res = nullptr;
 	TBase *cur = start;
 	TStack<TLine *> lines(100);
-	lines.push(nullptr);
+	//lines.push(nullptr);
 
-	while (res == nullptr && cur != nullptr)
+	while (cur != nullptr)
 	{
 		if (cur->getType() == POINT)
 		{
-			if (((TPoint *)cur)->getName() == name)
+			if (res == nullptr)
 			{
-				res = (TPoint *)cur;
+				if (((TPoint *)cur)->getName() == name)
+				{
+					res = (TPoint *)cur;
+				}
 			}
 
 			cur = lines.pop();
@@ -368,14 +371,14 @@ TPoint* TPlex::findPoint(std::string name)
 		}
 	}
 
-	while (lines.peek() != nullptr)
+	/*while (lines.peek() != nullptr)
 	{
 		cur = lines.pop();
 		while (cur->getMultiplicity() != 1)
 		{
 			((TLine *)cur)->updateMultiplicity();
 		}
-	}
+	}*/
 
 	return res;
 }
@@ -385,15 +388,18 @@ TPoint* TPlex::findPoint(int x, int y)
 	TPoint *res = nullptr;
 	TBase *cur = start;
 	TStack<TLine *> lines(100);
-	lines.push(nullptr);
+	//lines.push(nullptr);
 
-	while (res == nullptr && cur != nullptr)
+	while (cur != nullptr)
 	{
 		if (cur->getType() == POINT)
 		{
-			if (((TPoint *)cur)->distance(x, y) == 1)
+			if (res == nullptr)
 			{
-				res = (TPoint *)cur;
+				if (((TPoint *)cur)->distance(x, y) == 1)
+				{
+					res = (TPoint *)cur;
+				}
 			}
 
 			cur = lines.pop();
@@ -429,14 +435,14 @@ TPoint* TPlex::findPoint(int x, int y)
 		}
 	}
 
-	while (lines.peek() != nullptr)
+	/*while (lines.peek() != nullptr)
 	{
 		cur = lines.pop();
 		while (cur->getMultiplicity() != 1)
 		{
 			((TLine *)cur)->updateMultiplicity();
 		}
-	}
+	}*/
 
 	return res;
 }

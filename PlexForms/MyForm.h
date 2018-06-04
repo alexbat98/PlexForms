@@ -3,6 +3,7 @@
 #include "TDrawing.h"
 
 #include <string>
+#include <math.h>
 
 namespace PlexForms {
 
@@ -174,7 +175,8 @@ private: System::Void MyForm_MouseDown(System::Object^  sender, System::Windows:
 	y1 = e->Y;
 }
 private: System::Void MyForm_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	if (isInCreationMode) {
+	double dist = std::sqrt(std::pow(e->X-x1, 2) + std::pow(e->Y-y1, 2));
+	if (isInCreationMode && dist > 5) {
 		drawing->addLine(x1, y1, e->X, e->Y);
 		drawing->draw(gContext);
 	}
