@@ -31,7 +31,7 @@ TPoint::TPoint(std::string src)
 	int k;
 
 	strToWords(src, words, k);
-	this->fType = LINE;
+	this->fType = POINT;
 	this->name = words[1];
 	this->x = stoi(words[2]);
 	this->y = stoi(words[3]);

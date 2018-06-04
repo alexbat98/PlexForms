@@ -759,6 +759,9 @@ void TPlex::open(std::string path)
 		std::ifstream infile;
 		infile.open(path);
 		TStack<TBase*> stack(100);
+		TPoint* points[100];
+		int lastp = -1;
+		int pID = -1;
 
 		while (!infile.eof())
 		{
@@ -767,8 +770,23 @@ void TPlex::open(std::string path)
 			if (item.find("POINT") != std::string::npos)
 			{
 
-				TBase* point = new TPoint(item);
-				stack.push(point);
+				TPoint* point = new TPoint(item);
+				for (int i = 0; i <= lastp && pID == -1; i++)
+				{
+					if (points[i]->getName() == point->getName())
+					{
+						pID = i;
+					}
+				}
+
+				if (pID != -1)
+				{
+					stack.push(points[pID]);
+				} else 
+				{
+					points[++lastp] = point;
+					stack.push(point);
+				}
 			}
 			else if (item.find("LINE") != std::string::npos)
 			{

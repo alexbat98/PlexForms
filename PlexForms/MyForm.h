@@ -217,11 +217,14 @@ private: System::Void openToolStripMenuItem_Click(System::Object^  sender, Syste
 
 		drawing->open(fileName);
 		drawing->draw(gContext);
+
+		isInCreationMode = true;
 	}
 }
 private: System::Void closeToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	gContext->Clear(Color::WhiteSmoke);
 	delete drawing;
+	isInCreationMode = false;
 }
 };
 }
