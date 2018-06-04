@@ -33,20 +33,8 @@ void TPlex::addLine(TLine *l)
 	else
 	{
 
-		TPoint *tmpP = findPoint(((TPoint*)l->getLeft())->getX(), ((TPoint*)l->getLeft())->getY());
-		if (tmpP != nullptr)
-		{
-			tmpP->updateMultiplicity(1);
-		}
-
-		tmpP = findPoint(((TPoint*)l->getRight())->getX(), ((TPoint*)l->getRight())->getY());
-		if (tmpP != nullptr)
-		{
-			tmpP->updateMultiplicity(1);
-		}
-
-		TLine *left = findLineWithPoint(l->getLeft()->getName());
-		TLine *right = findLineWithPoint(l->getRight()->getName());
+		TLine *left = findLineWithPoint(((TPoint*)l->getLeft())->getX(), ((TPoint*)l->getLeft())->getY());
+		TLine *right = findLineWithPoint(((TPoint*)l->getRight())->getX(), ((TPoint*)l->getRight())->getY());
 
 		if (left != nullptr && right == nullptr)
 		{
@@ -65,13 +53,13 @@ void TPlex::addLine(TLine *l)
 			{
 				//delete l->getRight();
 				l->setRight(right->getLeft());
-				//l->getRight()->updateMultiplicity(1);
+				l->getRight()->updateMultiplicity(1);
 			}
 			else
 			{
 				//delete l->getRight();
 				l->setRight(right->getRight());
-				//l->getRight()->updateMultiplicity(1);
+				l->getRight()->updateMultiplicity(1);
 			}
 		}
 	}
@@ -254,10 +242,10 @@ TLine* TPlex::findLineWithPoint(std::string name)
 			}
 
 			cur = lines.pop();
-			if (cur != nullptr)
+			/*if (cur != nullptr)
 			{
 				((TLine *)cur)->updateMultiplicity();
-			}
+			}*/
 		}
 		else
 		{
@@ -323,10 +311,10 @@ TLine* TPlex::findLineWithPoint(int x, int y)
 			}
 
 			cur = lines.pop();
-			if (cur != nullptr)
+			/*if (cur != nullptr)
 			{
 				((TLine *)cur)->updateMultiplicity();
-			}
+			}*/
 		}
 		else
 		{
