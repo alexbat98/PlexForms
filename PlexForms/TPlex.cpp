@@ -242,10 +242,10 @@ TLine* TPlex::findLineWithPoint(std::string name)
 			}
 
 			cur = lines.pop();
-			/*if (cur != nullptr)
+			if (cur != nullptr)
 			{
 				((TLine *)cur)->updateMultiplicity();
-			}*/
+			}
 		}
 		else
 		{
@@ -290,31 +290,26 @@ TLine* TPlex::findLineWithPoint(int x, int y)
 	TBase *cur = start;
 	TStack<TPoint *> points(100);
 	TStack<TLine *> lines(100);
-	lines.push(nullptr);
+	//lines.push(nullptr);
 
-	while (res == nullptr && cur != nullptr)
+	while (cur != nullptr)
 	{
 		if (cur->getType() == POINT)
 		{
-			if (((TPoint*)cur)->distance(x, y) == 1)
+			if (res == nullptr)
 			{
-				res = lines.peek();
-
-				while (lines.peek() != nullptr)
+				if (((TPoint*)cur)->distance(x, y) == 1)
 				{
-					cur = lines.pop();
-					while (cur->getMultiplicity() != 1)
-					{
-						((TLine *)cur)->updateMultiplicity();
-					}
+					res = lines.peek();
 				}
 			}
 
 			cur = lines.pop();
-			/*if (cur != nullptr)
+			if (cur != nullptr)
 			{
 				((TLine *)cur)->updateMultiplicity();
-			}*/
+			}
+			
 		}
 		else
 		{
@@ -341,12 +336,12 @@ TLine* TPlex::findLineWithPoint(int x, int y)
 		}
 	}
 
-	while (lines.peek() != nullptr)
+	while (!lines.isEmpty())
 	{
-		cur = lines.pop();
-		while (cur->getMultiplicity() != 1)
+		TLine *l = lines.pop();
+		while (l != nullptr && l->getMultiplicity() != 1)
 		{
-			((TLine *)cur)->updateMultiplicity();
+			l->updateMultiplicity();
 		}
 	}
 

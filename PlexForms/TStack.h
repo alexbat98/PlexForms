@@ -79,7 +79,7 @@ public:
 		}
 		else
 		{
-			return T(0);
+			return nullptr;
 		}
 	}
 

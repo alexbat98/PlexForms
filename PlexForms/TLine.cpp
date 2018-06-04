@@ -97,7 +97,7 @@ void TLine::move(int dx, int dy)
 	}
 }
 
-void TLine::updateMultiplicity(int flag)
+void TLine::updateMultiplicity(int)
 {
 	multiplicity++;
 	if (multiplicity == 4) multiplicity = 1;
