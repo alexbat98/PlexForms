@@ -762,6 +762,9 @@ void TPlex::open(std::string path)
 		TPoint* points[100];
 		int lastp = -1;
 		int pID = -1;
+		TLine* lines[100];
+		int lastl = -1;
+		int lID = -1;
 
 		while (!infile.eof())
 		{
@@ -782,6 +785,7 @@ void TPlex::open(std::string path)
 				if (pID != -1)
 				{
 					stack.push(points[pID]);
+					pID = -1;
 				} else 
 				{
 					points[++lastp] = point;
@@ -791,8 +795,20 @@ void TPlex::open(std::string path)
 			else if (item.find("LINE") != std::string::npos)
 			{
 				TLine *line = new TLine(item);
+				for (int i = 0; i <= lastl && lID == -1; i++)
+				{
+					if (lines[i]->getName() == line->getName())
+					{
+						lID = i;
+					}
+				}
+				if (lID != -1)
+				{
+					line = lines[lID];
+					lID = -1;
+				}
 				line->setRight(stack.pop());
-				line->setLeft(stack.peek());
+				line->setLeft(stack.pop());
 				stack.push(line);
 			}
 		}
