@@ -97,8 +97,8 @@ public:
 
 		if (!isEmpty())
 		{
-			res = arr[last - 1];
-			arr[last--] = T(0);
+			res = arr[last--];
+			//arr[last--] = T(0);
 		}
 
 		return res;

@@ -137,6 +137,7 @@ namespace PlexForms {
 			this->closeToolStripMenuItem->Name = L"closeToolStripMenuItem";
 			this->closeToolStripMenuItem->Size = System::Drawing::Size(324, 38);
 			this->closeToolStripMenuItem->Text = L"Close";
+			this->closeToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::closeToolStripMenuItem_Click);
 			// 
 			// MyForm
 			// 
@@ -182,7 +183,7 @@ private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, Syste
 	if (drawing != nullptr) {
 		SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog;
 		saveFileDialog1->Filter = "Plex files (*.plex)|*.plex|All files (*.*)|*.*";
-		saveFileDialog1->FilterIndex = 2;
+		saveFileDialog1->FilterIndex = 1;
 		saveFileDialog1->RestoreDirectory = true;
 		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 		{
@@ -217,6 +218,10 @@ private: System::Void openToolStripMenuItem_Click(System::Object^  sender, Syste
 		drawing->open(fileName);
 		drawing->draw(gContext);
 	}
+}
+private: System::Void closeToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	gContext->Clear(Color::WhiteSmoke);
+	delete drawing;
 }
 };
 }

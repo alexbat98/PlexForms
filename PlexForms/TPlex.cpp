@@ -758,11 +758,14 @@ void TPlex::open(std::string path)
 		while (!infile.eof())
 		{
 			getline(infile, item);
-			if (item.find("POINT") == 0)
+			if(item.find("|") == std::string::npos){ break; }
+			if (item.find("POINT") != std::string::npos)
 			{
-				stack.push(new TPoint (item));
+
+				TBase* point = new TPoint(item);
+				stack.push(point);
 			}
-			else if (item.find("LINE") == 0)
+			else if (item.find("LINE") != std::string::npos)
 			{
 				TLine *line = new TLine(item);
 				line->setRight(stack.pop());
