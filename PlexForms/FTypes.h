@@ -1,0 +1,9 @@
+#pragma once
+enum FType
+{
+	POINT,
+	LINE,
+	RECTANGLE,
+	TRIANGLE,
+	ROTATED_RECTANGLE
+};
