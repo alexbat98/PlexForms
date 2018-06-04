@@ -79,7 +79,7 @@ public:
 		}
 		else
 		{
-			return T(0);
+			nullptr;
 		}
 	}
 
@@ -93,15 +93,15 @@ public:
 
 	T pop()
 	{
-		T res(0);
+		//T res(0);
 
 		if (!isEmpty())
 		{
-			res = arr[--last];
+			return arr[--last];
 			//arr[last--] = T(0);
 		}
 
-		return res;
+		return nullptr;
 	}
 };
 
