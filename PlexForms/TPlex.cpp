@@ -21,6 +21,11 @@ void TPlex::attachToLeft(TLine *left, TLine *l)
 
 void TPlex::addLine(TLine *l)
 {
+
+	if (l == nullptr)
+	{
+		return;
+	}
 	if (start == nullptr)
 	{
 		start = l;

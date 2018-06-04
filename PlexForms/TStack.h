@@ -97,7 +97,7 @@ public:
 
 		if (!isEmpty())
 		{
-			res = arr[last--];
+			res = arr[--last];
 			//arr[last--] = T(0);
 		}
 

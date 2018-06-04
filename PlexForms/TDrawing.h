@@ -3,7 +3,7 @@
 
 class TDrawing
 {
-	TPlex curPlex;
+	TPlex *curPlex;
 	std::string getNextName();
 	char nextChr;
 public:
